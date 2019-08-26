@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 2 (x64) (http://www.altova.com) by Gavin Brown (HEWLETT PACKARD) -->
+<!-- edited with XMLSPY by gavin brown (Hewlett Packard GmbH) -->
+<!-- GSXML Order Schema Version: 200912v1.0 -->
+<!-- GSXML Order Schema Version: 201002v1.0 -->
+<xs:schema xmlns:ois="http://hp.com/sales/om/orders/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://hp.com/sales/om/orders/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Address">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ois:Company" minOccurs="0"/>
+				<xs:element ref="ois:Division" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Street" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:POBox" minOccurs="0"/>
+				<xs:element name="District" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:City" minOccurs="0"/>
+				<xs:element ref="ois:State" minOccurs="0"/>
+				<xs:element ref="ois:ZIPCode" minOccurs="0"/>
+				<xs:element ref="ois:POBoxZIP" minOccurs="0"/>
+				<xs:element ref="ois:ISOCountryCode" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Country or province code</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Company2" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Association">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ReferenceItem" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="Type" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BundleItem">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Information for bundled Items</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:ProductInformation" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Quantity"/>
+				<xs:element ref="ois:Price" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:DateInfo" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Instructions" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:CustomerReference" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Discount" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Item" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:BundleItem" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="bundleItemNumber" type="xs:string" use="required"/>
+			<xs:attribute name="parentItemNumber" type="xs:string"/>
+			<xs:attribute name="itemType" type="xs:string"/>
+			<xs:attribute name="customerItemNumber" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BusinessDesc" type="xs:string"/>
+	<xs:element name="BusinessID" type="xs:string"/>
+	<xs:element name="BuyerID">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Customer Number</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:IDCode"/>
+				<xs:element name="CustIDCode" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:IDDesc" minOccurs="0"/>
+				<xs:element name="SystemIDCode" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute name="IDType" type="xs:string"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ois:Address" minOccurs="0"/>
+				<xs:element name="CustTaxID" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="IDType" type="xs:NMTOKEN" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CardAuthCode" type="xs:string"/>
+	<xs:element name="CardExpirationDate" type="xs:dateTime"/>
+	<xs:element name="CardHolderName" type="xs:string"/>
+	<xs:element name="CardInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ois:CardType"/>
+				<xs:element name="PGSID" type="xs:string" minOccurs="0"/>
+				<xs:element name="AllocatedAmount" type="xs:float" minOccurs="0"/>
+				<xs:element name="CardIssuerBank" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:CardNum" minOccurs="0"/>
+				<xs:element ref="ois:CardAuthCode" minOccurs="0"/>
+				<xs:element name="CardAuthInfo" type="xs:string" minOccurs="0"/>
+				<xs:element name="CardAuthDate" type="xs:dateTime" minOccurs="0"/>
+				<xs:element ref="ois:CardRefNum" minOccurs="0"/>
+				<xs:element ref="ois:CardExpirationDate" minOccurs="0"/>
+				<xs:element ref="ois:CardTypeOther" minOccurs="0"/>
+				<xs:element ref="ois:CardHolderName" minOccurs="0"/>
+				<xs:element name="CardReportingLevel" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CardNum" type="xs:string"/>
+	<xs:element name="CardRefNum" type="xs:string"/>
+	<xs:element name="CardType" type="xs:string"/>
+	<xs:element name="CardTypeOther" type="xs:string"/>
+	<xs:element name="Carrier" type="xs:string"/>
+	<xs:element name="CarrierOther" type="xs:string"/>
+	<xs:element name="City">
+		<xs:annotation>
+			<xs:documentation>City</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CommodityCode" type="xs:string"/>
+	<xs:element name="Company">
+		<xs:annotation>
+			<xs:documentation>Company name</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactDivision" type="xs:string"/>
+	<xs:element name="ContactEmail">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactFax">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactID" type="xs:string"/>
+	<xs:element name="ContactInfo">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Common contact information</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:ContactName" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:ContactID" minOccurs="0"/>
+				<xs:element ref="ois:ContactDivision" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:ContactPhone" minOccurs="0"/>
+				<xs:element ref="ois:ContactPhoneHome" minOccurs="0"/>
+				<xs:element ref="ois:ContactPhoneMobile" minOccurs="0"/>
+				<xs:element ref="ois:ContactFax" minOccurs="0"/>
+				<xs:element ref="ois:ContactEmail" minOccurs="0"/>
+				<xs:element name="ContactEmail2" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ContacType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>SBL = Siebel (eprime specific); SHP = Shipping contact; INV = Invoice contact; PUR = Purchaser Contact; SLD = Sold-to; SUP = Supplier (eProcurement specific)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ContactParty" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>REC = Receiving Party; ORD = Order Party; SHP = Shipping Party</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ContactName">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="First" type="xs:string"/>
+					<xs:attribute name="Middle" type="xs:string"/>
+					<xs:attribute name="Last" type="xs:string"/>
+					<xs:attribute name="Name" type="xs:string"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ContactPhone">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactPhoneHome">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContactPhoneMobile">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ContextID" type="xs:string"/>
+	<xs:element name="Currency">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Common Currency details</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="ois:ISOCurrency"/>
+					<xs:element ref="ois:currency2"/>
+				</xs:choice>
+				<xs:element name="SecondaryCurrency" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+							<xs:maxLength value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="ois:ExchangeRate" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CustomerReference">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Delivery Information:  Ship-to, Invoice-to, Sold-to</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:BuyerID"/>
+				<xs:element name="Sequence" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:ContactInfo" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Date" type="xs:date">
+		<xs:annotation>
+			<xs:documentation>Order Date </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateDesc" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Description of date</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateInfo">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Date information</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="ois:DateTimeUTC"/>
+					<xs:element ref="ois:Date"/>
+				</xs:choice>
+				<xs:element ref="ois:DateDesc" minOccurs="0"/>
+				<xs:element ref="ois:Time" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="DateType" type="xs:NMTOKEN" use="required">
+				<xs:annotation>
+					<xs:documentation>Date type</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateTimeUTC">
+		<xs:annotation>
+			<xs:documentation>Date in UTC format e.g. YYYYMMDD hhmmss +/-zzzz</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:dateTime"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DeliveryDate">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Earliest, Latest Arrival Date</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:Quantity"/>
+				<xs:element ref="ois:DateInfo" minOccurs="0"/>
+				<xs:element ref="ois:CustomerReference" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DescriptionUOM" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Unit of measure description</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscounTimeRef" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Obsolete element, do not use!</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Discount">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Discount / special deal information; DiscounType OPG is obsolete; DIS is to be used instead </xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:DiscountCode" minOccurs="0"/>
+				<xs:element ref="ois:DiscountID" minOccurs="0"/>
+				<xs:element ref="ois:DiscountDealID" minOccurs="0"/>
+				<xs:element ref="ois:DiscountBundleID" minOccurs="0"/>
+				<xs:element ref="ois:DiscountConditionCode" minOccurs="0"/>
+				<xs:element ref="ois:DiscountAmount" minOccurs="0"/>
+				<xs:element ref="ois:DiscountPercent" minOccurs="0"/>
+				<xs:element ref="ois:DiscountDealPrice" minOccurs="0"/>
+				<xs:element ref="ois:DiscountDaysDue" minOccurs="0"/>
+				<xs:element ref="ois:DiscountDueDate" minOccurs="0"/>
+				<xs:element ref="ois:DiscounTimeRef" minOccurs="0"/>
+				<xs:element ref="ois:DiscountVersion" minOccurs="0"/>
+				<xs:element ref="ois:DiscountExchangeRate" minOccurs="0"/>
+				<xs:element name="DiscountDescription" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="DiscounType" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Discount type; the following discount types are OBSOLETE, do not use: OPG, PLS, CMC2, CMC3, CMC4, CMC5, CMC6</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DiscountBundle" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Obsolete, do not use! Replaced by the element DiscountBundleID</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DiscountAmount" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Discount as value</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountCode" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Obsolete, replaced by DiscountConditionCode, Description of discount</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountDaysDue" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Obsolete element, do not use!</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountDueDate" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Obsolete element, do not use!</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountDealID" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Spider OPG deal id</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountConditionCode" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Discount M-code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountDealPrice" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Used for OPG only, the discounted price</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountBundleID" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Used for OPG discounts to express the BundleNumber</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountExchangeRate" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>The exchange rate used for discounts' calculations</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountVersion" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The discount deal info version</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DiscountPercent" type="xs:float">
+		<xs:annotation>
+			<xs:documentation>Discount as percentage</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Division" type="xs:string"/>
+	<xs:element name="DocumentDesc" type="xs:string"/>
+	<xs:element name="DocumentID" type="xs:string"/>
+	<xs:element name="DocumentReference">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ois:DocumentID"/>
+				<xs:element ref="ois:DocumentDesc" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="DocType" type="xs:NMTOKEN" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ExchangeRate" type="xs:float"/>
+	<xs:element name="Hold">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="HoldCode" type="xs:string"/>
+				<xs:element name="HoldStatus" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:HoldConfiguration" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:HoldGroupLocation" minOccurs="0"/>
+				<xs:element ref="ois:HoldLocation" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:HoldParameter" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:AuditLog" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IDCode" type="xs:string"/>
+	<xs:element name="IDDesc" type="xs:string"/>
+	<xs:element name="Identifier">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UserLogin" type="xs:string" minOccurs="0"/>
+				<xs:element name="UserIdentifier" type="xs:string" minOccurs="0"/>
+				<xs:element name="EmployeeIdentifier" type="xs:string" minOccurs="0"/>
+				<xs:element name="RequestorIdentifier" type="xs:string" minOccurs="0"/>
+				<xs:element name="BuyerApproverIdentifier" type="xs:string" minOccurs="0"/>
+				<xs:element name="BuyerApproverCompanyName" type="xs:string" minOccurs="0"/>
+				<xs:element name="BuyerApproverEmail" type="xs:string" minOccurs="0"/>
+				<xs:element name="VendorApproverIdentifier" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ISOCountryCode">
+		<xs:annotation>
+			<xs:documentation>Country code</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="0"/>
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="ISOCurrency">
+		<xs:annotation>
+			<xs:documentation>3 digit ISO currency Code</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+				<xs:maxLength value="3"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="InstructCode" type="xs:string"/>
+	<xs:element name="InstructCodesc" type="xs:string"/>
+	<xs:element name="InstructValue" type="xs:string"/>
+	<xs:element name="Instructions">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Customer specific instructions</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:InstructCode" minOccurs="0"/>
+				<xs:element ref="ois:InstructCodesc" minOccurs="0"/>
+				<xs:element ref="ois:InstructValue" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="InstrucType" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>UDF = User defined fields; SHP=Shipping instructions; INV = Invoice Instructions; DUR = Order duration (eprime specific); COM = Customer Comments; DPT = Department for addr completion (EDI Retail specific)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="showOnReport" default="1">
+				<xs:annotation>
+					<xs:documentation>Whether this instruction should be printed on the report. (Currently only instructions with type INF, WAR, ERR, DIE appear on the report)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Item">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Item Information for simple Item structure</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:LineNumber">
+					<xs:annotation>
+						<xs:documentation>Sequential Number per item assigned by HP</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ParentItemNumber" type="xs:int" minOccurs="0"/>
+				<xs:element name="LegacyItemNumber" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:ItemNumber" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>The customer line number which can be alphanumeric</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="LineItemAssociation" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Obsolete - use Association</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ois:Association" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:ProductInformation" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Currency" minOccurs="0"/>
+				<xs:element ref="ois:Quantity"/>
+				<xs:element ref="ois:Price" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Tax" minOccurs="0"/>
+				<xs:element ref="ois:ChargeOrDiscount" minOccurs="0"/>
+				<xs:element ref="ois:Instructions" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:DocumentReference" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:CustomerReference" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Discount" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:DateInfo" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:CommodityCode" minOccurs="0"/>
+				<xs:element ref="ois:ContextID" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemNumber" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The customer line number.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LineNumber" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Sequential Number per  item</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Option" type="xs:string"/>
+	<xs:element name="OptionDescription" type="xs:string"/>
+	<xs:element name="OrderHeader">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Header Details</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:BusinessDesc" minOccurs="0"/>
+				<xs:element ref="ois:BusinessID" minOccurs="0"/>
+				<xs:element name="ProgramType" type="xs:string" minOccurs="0"/>
+				<xs:element name="OrderingMethod" type="xs:string" minOccurs="0"/>
+				<xs:element name="OrderReason" type="xs:string" minOccurs="0"/>
+				<xs:element name="GoToMarketMotion" type="xs:string" minOccurs="0"/>
+				<xs:element name="Region" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Restricted to AMERICAS, AP, EMEA or WW only</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="AMERICAS"/>
+							<xs:enumeration value="AP"/>
+							<xs:enumeration value="EMEA"/>
+							<xs:enumeration value="WW"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="SourceSystem" type="xs:string" minOccurs="0"/>
+				<xs:element name="MessageType" type="xs:string" minOccurs="0"/>
+				<xs:element name="OriginalOrderSource" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="OrderType" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>e.g. TradeOrder, CreditOrder</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderItem">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Line Item</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="ois:Item"/>
+					<xs:element ref="ois:BundleItem"/>
+				</xs:choice>
+				<xs:element ref="ois:Transport" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrderQuantity" type="xs:int"/>
+	<xs:element name="OrderSummary">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ois:TotalAmount"/>
+				<xs:element name="SecondaryCurrencyTotal" type="xs:decimal" minOccurs="0"/>
+				<xs:element ref="ois:TotalNumLines" minOccurs="0"/>
+				<xs:element name="AltTotalAmount" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PaymenTerm" type="xs:string"/>
+	<xs:element name="PaymenTermOther" type="xs:string"/>
+	<xs:element name="Payment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ois:PaymentMean" minOccurs="0"/>
+				<xs:element ref="ois:PaymenTerm" minOccurs="0"/>
+				<xs:element ref="ois:PaymenTermOther" minOccurs="0"/>
+				<xs:element name="PaymentDaysDue" type="xs:string" minOccurs="0"/>
+				<xs:element name="PaymentStatus" type="xs:string" minOccurs="0"/>
+				<xs:element name="PaymentStatusDesc" type="xs:string" minOccurs="0"/>
+				<xs:element name="PaymentStatusDate" type="xs:string" minOccurs="0"/>
+				<xs:element name="BankID" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:CostLocation" minOccurs="0"/>
+				<xs:element name="ConsolidatedInvoice" type="xs:string" minOccurs="0"/>
+				<xs:element name="InvoicePreference" type="xs:string" minOccurs="0"/>
+				<xs:element name="InvoicePreferenceOther" type="xs:string" minOccurs="0"/>
+				<xs:element name="InvoiceDelivery" type="xs:string" minOccurs="0"/>
+				<xs:element name="InvoicePrint" type="xs:string" minOccurs="0"/>
+				<xs:element name="InvoiceSummary" type="xs:string" minOccurs="0"/>
+				<xs:element name="ControlCode" type="xs:string" minOccurs="0"/>
+				<xs:element name="LeasingContractNumber" type="xs:string" minOccurs="0"/>
+				<xs:element name="PaymentReceivedDate" type="xs:string" minOccurs="0"/>
+				<xs:element name="PaymentStatusUser" type="xs:string" minOccurs="0"/>
+				<xs:element name="ElectronicInvoiceOnly" type="xs:string" minOccurs="0"/>
+				<xs:element name="ElectronicAdditionalHardcopy" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PaymentMean" type="xs:string"/>
+	<xs:element name="CostLocation">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Price">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Customer Price</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:PriceDescription" minOccurs="0"/>
+				<xs:element ref="ois:PriceAmount"/>
+				<xs:element name="PriceSource" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="PriceType" type="xs:NMTOKEN"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PriceAmount" type="xs:decimal"/>
+	<xs:element name="PriceDescription" type="xs:string"/>
+	<xs:element name="PriceDescriptor" type="xs:string"/>
+	<xs:element name="ProductDescription" type="xs:string"/>
+	<xs:element name="ProductInformation">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Product details (e.g. code, description etc.)</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:ProductDescription" minOccurs="0"/>
+				<xs:element ref="ois:ProductNumber"/>
+				<xs:element ref="ois:ProductLine" minOccurs="0"/>
+				<xs:element ref="ois:ProductName" minOccurs="0"/>
+				<xs:element ref="ois:ProductOption" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:ProductAttribute" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="ProductManufacturer" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ProductCode" type="xs:NMTOKEN" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductNumber" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Product reference number</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ProductName" type="xs:string"/>
+	<xs:element name="ProductOption">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Product Options</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:OptionDescription" minOccurs="0"/>
+				<xs:element ref="ois:Option"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PurchaseOrder">
+		<xs:complexType mixed="false">
+			<xs:annotation>
+				<xs:documentation>root element of Order </xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:OrderHeader"/>
+				<xs:element ref="ois:Currency"/>
+				<xs:element ref="ois:Instructions" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Hold" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:DateInfo" maxOccurs="unbounded"/>
+				<xs:element ref="ois:DocumentReference" maxOccurs="unbounded"/>
+				<xs:element ref="ois:CustomerReference" maxOccurs="unbounded"/>
+				<xs:element ref="ois:Identifier" minOccurs="0"/>
+				<xs:element ref="ois:Payment" minOccurs="0"/>
+				<xs:element ref="ois:CardInfo" minOccurs="0"/>
+				<xs:element ref="ois:Discount" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ois:OrderItem" maxOccurs="unbounded"/>
+				<xs:element ref="ois:OrderSummary" minOccurs="0"/>
+				<xs:element ref="ois:PriceDescriptor" minOccurs="0"/>
+				<xs:element name="PriceDescriptorCountry" type="xs:string" minOccurs="0"/>
+				<xs:element name="PriceDescriptorTerm" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:Tax" minOccurs="0"/>
+				<xs:element ref="ois:Transport" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Quantity">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ois:OrderQuantity"/>
+				<xs:element ref="ois:DescriptionUOM" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="unitOfMeasure" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unit of measure code</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="State">
+		<xs:annotation>
+			<xs:documentation>State/County/Province</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Street">
+		<xs:simpleType>
+			<xs:restriction base="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Tax">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Tax Details</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:TaxPercent" minOccurs="0"/>
+				<xs:element ref="ois:TaxAmount" minOccurs="0"/>
+				<xs:element ref="ois:TaxableAmount" minOccurs="0"/>
+				<xs:element ref="ois:TaxLocation" minOccurs="0"/>
+				<xs:element name="TaxID" type="xs:string" minOccurs="0"/>
+				<xs:element name="TaxCode" type="xs:string" minOccurs="0"/>
+				<xs:element name="TaxCertificateNumber" type="xs:string" minOccurs="0"/>
+				<xs:element name="TaxExempt" type="xs:string" minOccurs="0"/>
+				<xs:element name="AltTaxAmount" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TaxAmount" type="xs:decimal"/>
+	<xs:element name="TaxLocation" type="xs:string"/>
+	<xs:element name="TaxPercent" type="xs:float"/>
+	<xs:element name="TaxableAmount" type="xs:decimal"/>
+	<xs:element name="Transport">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ois:TransportMode"/>
+				<xs:element ref="ois:TransportModeOther" minOccurs="0"/>
+				<xs:element ref="ois:TransportMean" minOccurs="0"/>
+				<xs:element ref="ois:TransportMeanOther" minOccurs="0"/>
+				<xs:element ref="ois:Carrier"/>
+				<xs:element ref="ois:CarrierOther" minOccurs="0"/>
+				<xs:element ref="ois:TransportContractNumber" minOccurs="0"/>
+				<xs:element ref="ois:TransportInstructions" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TransportMode" type="xs:string"/>
+	<xs:element name="TransportModeOther" type="xs:string"/>
+	<xs:element name="TransportMean" type="xs:string"/>
+	<xs:element name="TransportMeanOther" type="xs:string"/>
+	<xs:element name="TransportContractNumber" type="xs:string"/>
+	<xs:element name="TransportInstructions" type="xs:string"/>
+	<xs:element name="Time" type="xs:time">
+		<xs:annotation>
+			<xs:documentation>Time</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TotalAmount" type="xs:decimal"/>
+	<xs:element name="TotalNumLines" type="xs:int"/>
+	<xs:element name="ZIPCode">
+		<xs:annotation>
+			<xs:documentation>Post/ZIP code</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="12"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="address" type="xs:string"/>
+	<xs:element name="biztalk_1">
+		<xs:annotation>
+			<xs:documentation>Root node of GoldenStandard XML messages</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="false">
+			<xs:annotation>
+				<xs:documentation>root element of BizTalk document</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:header">
+					<xs:annotation>
+						<xs:documentation>The GoldenStandard container for the routing meta data and references relevant to the payload</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ois:body">
+					<xs:annotation>
+						<xs:documentation>The GoldenStandard container for the payload</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="body">
+		<xs:complexType mixed="false">
+			<xs:annotation>
+				<xs:documentation>Body Part of BizTalk document</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:PurchaseOrder"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="currency2" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>HP specific 2 digit Currency Code</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="delivery">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ois:message">
+					<xs:annotation>
+						<xs:documentation>Contains message identifiers and when this message was sent</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ois:to">
+					<xs:annotation>
+						<xs:documentation>Routing meta data for destination</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ois:from">
+					<xs:annotation>
+						<xs:documentation>Routing meta data describing the source</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ois:ServiceHeader" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Use if you need a copy of the B2B Services Gateway wrapper meta data</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="description" type="xs:string"/>
+	<xs:element name="document">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ois:name"/>
+				<xs:element ref="ois:description" minOccurs="0"/>
+				<xs:element ref="ois:Format" minOccurs="0"/>
+				<xs:element ref="ois:FormatVersion" minOccurs="0"/>
+				<xs:element ref="ois:FormatVariant" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="from">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ois:address"/>
+				<xs:element ref="ois:state" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="handle" type="xs:string"/>
+	<xs:element name="header">
+		<xs:complexType mixed="false">
+			<xs:annotation>
+				<xs:documentation>Header Part of BizTalk document</xs:documentation>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="ois:delivery">
+					<xs:annotation>
+						<xs:documentation>Contains message identifiers and information about where the message is from and where it is going</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ois:manifest">
+					<xs:annotation>
+						<xs:documentation>Describes what this document is e.g. a normalized name such as TradeOrder, Invoice, ShipmentNotification</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="manifest">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ois:document"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="message">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ois:messageID"/>
+				<xs:element name="SenderMessageID" type="xs:string" minOccurs="0"/>
+				<xs:element name="ParentFileID" type="xs:string" minOccurs="0"/>
+				<xs:element name="CorrelationID" type="xs:string" minOccurs="0"/>
+				<xs:element name="TargetSpecificMessageID" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:SystemMessageID" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>All known message identifiers with system name to enable cross referencing and end to end tracking</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ois:sent">
+					<xs:annotation>
+						<xs:documentation>Timestamp in universal coordinated time format is a key metric end to end for process flow optimization</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ois:subject" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="messageID" type="xs:string"/>
+	<xs:element name="name" type="xs:string"/>
+	<xs:element name="process" type="xs:string"/>
+	<xs:element name="referenceID" type="xs:string"/>
+	<xs:element name="sent" type="xs:string"/>
+	<xs:element name="state">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ois:referenceID"/>
+				<xs:element ref="ois:handle" minOccurs="0"/>
+				<xs:element ref="ois:process" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="subject" type="xs:string"/>
+	<xs:element name="to">
+		<xs:complexType mixed="false">
+			<xs:sequence>
+				<xs:element ref="ois:address"/>
+				<xs:element ref="ois:state" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductLine" type="xs:string"/>
+	<xs:element name="DiscountID" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Obsolete, replaced by DiscountDealID, The M-code for the OPG</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MonetaryAmount">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UnitAmount" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Decimal 2 places</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:minExclusive value="0"/>
+							<xs:fractionDigits value="2" fixed="false"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="ois:TotalAmount" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ChargeOrDiscount">
+		<xs:annotation>
+			<xs:documentation> Allowance or Discount on Item Level</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IndicatorCode" type="xs:string" minOccurs="0"/>
+				<xs:element name="Description2" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ois:MonetaryAmount"/>
+			</xs:sequence>
+			<xs:attribute name="Indicator" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductAttribute">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="value" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="Type" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ServiceHeader">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Protocol" type="xs:string"/>
+				<xs:element name="Sender" type="xs:string"/>
+				<xs:element name="Receiver" type="xs:string"/>
+				<xs:element name="MsgType" type="xs:string"/>
+				<xs:element name="ReferenceNumber" type="xs:string"/>
+				<xs:element name="InstanceIdentifier" type="xs:string"/>
+				<xs:element name="LocationID" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SystemMessageID">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="system" type="xs:string"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Format" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The format of the message such as xCBL, GSXML Order</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FormatVersion" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>The version of this format for xCBL this could be e.g. 3.5 or 4.0 or if not present current format is assumed</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FormatVariant" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>When there is a variation in addition to format and version this needs a name e.g. APJ or CustomerXYZ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="HoldParameter">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Number" type="xs:string"/>
+				<xs:element name="Value2" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="parameterType" type="xs:NMTOKEN" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HoldLocation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FieldPath" type="xs:string"/>
+				<xs:element name="FieldName" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="editable" type="xs:boolean" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HoldGroupLocation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FieldPath" type="xs:string"/>
+				<xs:element name="FieldName" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="POBoxZIP" type="xs:string"/>
+	<xs:element name="POBox" type="xs:string"/>
+	<xs:element name="HoldConfiguration">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="configParameter" type="xs:NMTOKEN" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HoldStatus" type="xs:string"/>
+	<xs:element name="HoldCode" type="xs:string"/>
+	<xs:element name="AuditLog">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Comment" type="xs:string"/>
+				<xs:element name="UserName" type="xs:string"/>
+				<xs:element name="TimeStamp" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
