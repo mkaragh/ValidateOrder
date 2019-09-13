@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
   - port: 8090
-    targetPort: 8091
+    targetPort: 8090
     name: http
-  - port: 8090
+  - port: 8091
     targetPort: 8091
     name: management
   selector:
